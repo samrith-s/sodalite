@@ -1,0 +1,14 @@
+{
+  "name": "@samrith/sodalite-core",
+  "version": "0.0.1",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@samrith/sodalite-providers": "workspace:*",
+    "@samrith/sodalite-utils": "workspace:*",
+    "ai": "^6.0.159",
+    "zod": "catalog:"
+  }
+}
