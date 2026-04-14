@@ -1,0 +1,35 @@
+{
+  "name": "sodalite",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "type": "module",
+  "scripts": {
+    "postinstall": "lefthook install",
+    "typecheck": "bunx tsc --noEmit",
+    "lint": "ultracite check",
+    "lint:check": "ultracite check",
+    "lint:fix": "ultracite fix"
+  },
+  "devDependencies": {
+    "@types/bun": "1.3.11",
+    "bun-types": "1.3.12",
+    "lefthook": "2.1.5",
+    "oxfmt": "0.44.0",
+    "oxlint": "1.59.0",
+    "oxlint-tsgolint": "0.20.0",
+    "typescript": "catalog:",
+    "ultracite": "7.4.4"
+  },
+  "packageManager": "bun@1.3.12",
+  "catalog": {
+    "typescript": "^6.0.2",
+    "ulid": "^3.0.2",
+    "zod": "^4.3.6"
+  },
+  "trustedDependencies": [
+    "lefthook",
+    "node-llama-cpp"
+  ]
+}

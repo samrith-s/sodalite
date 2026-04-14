@@ -1,0 +1,6 @@
+pre-commit:
+  commands:
+    fix:
+      glob: "**/*.{ts,tsx,json,jsonc,jsonl,toml,yaml,tml,md,mdx,txt}"
+      run: TERM=dumb NO_COLOR=1 FORCE_COLOR=0 bunx ultracite fix {staged_files}
+      stage_fixed: true

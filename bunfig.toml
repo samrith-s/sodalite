@@ -1,0 +1,95 @@
+# bunfig.toml
+# Bun runtime, package manager, and test runner configuration.
+# Docs: https://bun.com/docs/runtime/bunfig
+
+# ── Runtime ────────────────────────────────────────────────────────────────
+
+# Disable anonymous crash reporting / telemetry
+telemetry = false
+
+# Keep full performance — smol mode trades speed for memory, not worth it for a CLI
+smol = false
+
+# Only surface warnings and errors during normal runs
+logLevel = "warn"
+
+# Auto-alias `node` → `bun` for any script that still calls node internally
+[run]
+bun = true
+shell = "bun" # use Bun's shell for package.json scripts (faster, cross-platform)
+
+# Deeper object inspection in console.log — useful for debugging nested Effects
+[console]
+depth = 4
+
+# ── Package manager ─────────────────────────────────────────────────────────
+
+[install]
+# Pin exact versions so every `bun install` is byte-for-byte reproducible.
+# Pairs with catalog: entries in package.json — catalog versions are the
+# single source of truth and exact = true locks them without ^ drift.
+exact = true
+linker = "isolated"
+
+# Save a human-readable bun.lock alongside the binary lockfile.
+# Makes dependency changes reviewable in git diffs.
+saveTextLockfile = true
+
+# Link workspace packages via symlinks so changes to packages/core
+# are instantly reflected in packages/cli without re-installing.
+linkWorkspacePackages = true
+
+# Skip peer and optional deps — biggest source of silent disk bloat.
+# peer deps are almost always pulled in transitively anyway.
+# optional deps are platform-specific extras you almost certainly don't need.
+peer = false
+optional = true
+
+# Global package cache — shared across all projects on the machine.
+# Bun already stores packages here by default; these settings make it explicit.
+# Never disable the cache — it's the main reason bun install is fast.
+[install.cache]
+disable = false # keep cache enabled
+disableManifest = false # keep manifest cache (speeds up repeated installs)
+
+
+# ── Test runner ─────────────────────────────────────────────────────────────
+
+[test]
+# Timeout per test. 10s is generous for unit tests. Integration tests
+# that need more time should set their own timeout via test.timeout(ms).
+timeout = 10000
+
+# Run tests in random order to catch hidden order dependencies.
+randomize = true
+
+# Skip node_modules, dist, and generated files from test discovery.
+# Pruned at the directory level — Bun never even enters these directories.
+pathIgnorePatterns = ["node_modules/**", "dist/**", "**/dist/**", "coverage/**"]
+
+# Coverage off by default — fast feedback loop during development.
+# Run with: bun test --coverage
+coverage = false
+
+# Don't count test files themselves in coverage metrics.
+coverageSkipTestFiles = true
+
+# Emit both terminal summary and an lcov report for CI tools (Codecov, etc.)
+coverageReporter = ["text", "lcov"]
+coverageDir = "coverage"
+
+# Exclude generated and config files from coverage reports.
+coveragePathIgnorePatterns = [
+  "**/node_modules/**",
+  "**/dist/**",
+  "**/*.config.ts",
+  "packages/cli/scripts/**",
+  "packages/server/scripts/**",
+]
+
+# When coverage IS run (CI), enforce these minimums.
+# Tests fail if coverage drops below these thresholds.
+[test.coverageThreshold]
+line = 80
+function = 80
+statement = 80
