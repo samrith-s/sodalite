@@ -1,18 +1,16 @@
 {
   "editor.defaultFormatter": "oxc.oxc-vscode",
-  "editor.formatOnPaste": true,
+  "editor.formatOnPaste": false,
   "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
   "editor.codeActionsOnSave": {
-    "source.fixAll.oxc": "explicit",
-    "source.format.oxc": "explicit"
+    "source.fixAll.oxc": "always",
+    "source.format.oxc": "always"
   },
   "typescript.tsdk": "node_modules/typescript/lib",
   "oxc.enable": true,
-  "oxc.enable.oxfmt": false,
+  "oxc.enable.oxfmt": true,
   "oxc.enable.oxlint": true,
   "prettier.enable": false,
-  "biome.enabled": false,
-  "[typescript,javascript,json,jsonc,jsonl,toml,yaml,tml,md,mdx,txt]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode"
-  }
+  "biome.enabled": false
 }
