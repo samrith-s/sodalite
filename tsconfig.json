@@ -6,5 +6,8 @@
     "packages/**/*.d.ts",
     "packages/core/demo.ts"
   ],
-  "exclude": ["node_modules", "dist", "out"]
+  "exclude": ["node_modules", "dist", "out"],
+  "compilerOptions": {
+    "strictNullChecks": true
+  }
 }
