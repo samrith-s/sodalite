@@ -10,12 +10,22 @@ export interface WorkspaceOptions extends MetadataOptions {
 }
 
 export class Workspace extends Metadata {
-  readonly #cwd: string;
-  readonly #sessions = new Map<ULID, Session>();
-
+  /**
+   * Create an instance of an existing workspace from its options.
+   */
   static from(options: WorkspaceOptions): Workspace {
     return new Workspace(options);
   }
+
+  /**
+   * Create a new workspace for a given working directory.
+   */
+  static create(options: Pick<WorkspaceOptions, "cwd">): Workspace {
+    return new Workspace(options);
+  }
+
+  readonly #cwd: string;
+  readonly #sessions = new Map<ULID, Session>();
 
   constructor({
     id,

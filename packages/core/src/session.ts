@@ -28,6 +28,10 @@ export interface SessionUsage {
 }
 
 export class Session extends Metadata {
+  static from(options: SessionOptions): Session {
+    return new Session(options);
+  }
+
   readonly #workspaceId: ULID;
   readonly #messages: Message[] = [];
 
@@ -45,10 +49,6 @@ export class Session extends Metadata {
     },
     total: 0,
   };
-
-  static from(options: SessionOptions): Session {
-    return new Session(options);
-  }
 
   constructor({
     id,
@@ -107,16 +107,7 @@ export class Session extends Metadata {
   @Emit("session.message")
   async message(
     content: string,
-    descriptor: Omit<
-      MessageOptions,
-      | "content"
-      | "id"
-      | "createdAt"
-      | "updatedAt"
-      | "archived"
-      | "sessionId"
-      | "role"
-    >
+    descriptor: Pick<MessageOptions, "content" | "model" | "role" | "sessionId">
   ): Promise<void> {
     const message = Message.from(content, {
       model: descriptor.model,
