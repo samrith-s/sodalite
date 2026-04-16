@@ -11,7 +11,7 @@ export const OpenAICompatibleProviderOptionsSchema: z.ZodType<
     false
   >
 > = z.object({
-  apiKey: z.string().optional(),
+  apiKey: z.string(),
   baseURL: z.string(),
   headers: z.record(z.string(), z.string()).optional(),
   models: z.array(z.string()).optional(),

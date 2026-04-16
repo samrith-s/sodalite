@@ -24,6 +24,7 @@ import { MistralProviderOptionsSchema } from "./all/mistral.ts";
 import type { OpenAIModels, OpenAIProviderClient } from "./all/openai.ts";
 import { OpenAIProviderOptionsSchema } from "./all/openai.ts";
 import type { OpenAICompatibleProviderClient } from "./all/openai-compatible.ts";
+import { OpenAICompatibleProviderOptionsSchema } from "./all/openai-compatible.ts";
 import type {
   TogetherAIModels,
   TogetherAIProviderClient,
@@ -87,8 +88,8 @@ export const ProviderOptionsSchema = {
   [ModelProviders.GOOGLE]: GoogleProviderOptionsSchema.optional(),
   [ModelProviders.GROQ]: GroqProviderOptionsSchema.optional(),
   [ModelProviders.MISTRAL]: MistralProviderOptionsSchema.optional(),
-  [ModelProviders.OPENAI]: OpenAIProviderOptionsSchema,
-  [ModelProviders.OPENAI_COMPATIBLE]: OpenAIProviderOptionsSchema.optional(),
+  [ModelProviders.OPENAI]: OpenAIProviderOptionsSchema.optional(),
+  [ModelProviders.OPENAI_COMPATIBLE]: OpenAICompatibleProviderOptionsSchema,
   [ModelProviders.TOGETHERAI]: TogetherAIProviderOptionsSchema.optional(),
   [ModelProviders.VERCEL_GATEWAY]:
     VercelGatewayProviderOptionsSchema.optional(),
