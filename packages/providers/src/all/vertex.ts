@@ -1,8 +1,8 @@
-import { createVertex } from "@ai-sdk/google-vertex";
 import type { GoogleVertexProviderSettings } from "@ai-sdk/google-vertex";
+import { createVertex } from "@ai-sdk/google-vertex";
 import { z } from "zod";
 
-import type { ExtractedModels, SensibleProviderOptions } from "../types";
+import type { ExtractedModels, SensibleProviderOptions } from "../types.ts";
 
 export const VertexProviderOptionsSchema: z.ZodType<
   SensibleProviderOptions<GoogleVertexProviderSettings, VertexModels>

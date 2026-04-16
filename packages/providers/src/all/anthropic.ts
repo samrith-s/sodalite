@@ -1,8 +1,8 @@
-import { createAnthropic } from "@ai-sdk/anthropic";
 import type { AnthropicProviderSettings } from "@ai-sdk/anthropic";
+import { createAnthropic } from "@ai-sdk/anthropic";
 import { z } from "zod";
 
-import type { ExtractedModels, SensibleProviderOptions } from "../types";
+import type { ExtractedModels, SensibleProviderOptions } from "../types.ts";
 
 export const AnthropicProviderOptionsSchema: z.ZodType<
   SensibleProviderOptions<AnthropicProviderSettings, AnthropicModels>

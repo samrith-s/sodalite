@@ -1,6 +1,6 @@
 import { EventEmitter } from "node:events";
 
-import type { Events, EventsCatalog } from "./catalog";
+import type { Events, EventsCatalog } from "./catalog.ts";
 
 // oxlint-disable-next-line unicorn/prefer-event-target
 export const emitter = new EventEmitter();

@@ -1,11 +1,11 @@
-import { Ulid } from "@samrith/sodalite-utils";
 import type { ULID } from "@samrith/sodalite-utils";
+import { Ulid } from "@samrith/sodalite-utils";
 
 export interface MetadataOptions {
-  id?: ULID;
-  createdAt?: Date;
-  updatedAt?: Date;
   archived?: boolean;
+  createdAt?: Date;
+  id?: ULID;
+  updatedAt?: Date;
 }
 
 export abstract class Metadata {
@@ -14,7 +14,7 @@ export abstract class Metadata {
 
   protected _updatedAt: Date;
   // oxlint-disable-next-line typescript/no-inferrable-types
-  protected _archived: boolean = false;
+  protected _archived = false;
 
   constructor({ id, createdAt, updatedAt, archived }: MetadataOptions) {
     this.#id = id ?? Ulid.generate();

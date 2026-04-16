@@ -1,8 +1,8 @@
-import { createXai } from "@ai-sdk/xai";
 import type { XaiProviderSettings } from "@ai-sdk/xai";
+import { createXai } from "@ai-sdk/xai";
 import { z } from "zod";
 
-import type { ExtractedModels, SensibleProviderOptions } from "../types";
+import type { ExtractedModels, SensibleProviderOptions } from "../types.ts";
 
 export const XaiProviderOptionsSchema: z.ZodType<
   SensibleProviderOptions<XaiProviderSettings, XaiModels>

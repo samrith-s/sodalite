@@ -1,15 +1,16 @@
 import type { ULID } from "@samrith/sodalite-utils";
 
-import { Bus, Emit } from "./events";
-import type { MessageOptions } from "./message";
-import { Message, MessageRole } from "./message";
-import type { MetadataOptions } from "./metadata";
-import { Metadata } from "./metadata";
-import { streamText } from "./stream";
+import { Bus } from "./events/bus.ts";
+import { Emit } from "./events/emit.ts";
+import type { MessageOptions } from "./message.ts";
+import { Message } from "./message.ts";
+import type { MetadataOptions } from "./metadata.ts";
+import { Metadata } from "./metadata.ts";
+import { streamText } from "./stream.ts";
 
 export interface SessionOptions extends MetadataOptions {
-  workspaceId: ULID;
   messages?: Message[] | MessageOptions[];
+  workspaceId: ULID;
 }
 
 export interface SessionUsage {
@@ -62,7 +63,7 @@ export class Session extends Metadata {
 
     this.#workspaceId = workspaceId;
 
-    if (messages && messages.length) {
+    if (messages?.length) {
       for (const message of messages ?? []) {
         if (message instanceof Message) {
           this.#messages.push(message);
@@ -107,11 +108,11 @@ export class Session extends Metadata {
   @Emit("session.message")
   async message(
     content: string,
-    descriptor: Pick<MessageOptions, "content" | "model" | "role" | "sessionId">
+    descriptor: Pick<MessageOptions, "model">
   ): Promise<void> {
     const message = Message.from(content, {
       model: descriptor.model,
-      role: MessageRole.USER,
+      role: "user",
       sessionId: this.id,
     });
 
@@ -121,7 +122,7 @@ export class Session extends Metadata {
 
     const agentMessage = Message.from("", {
       model: descriptor.model,
-      role: MessageRole.ASSISTANT,
+      role: "assistant",
       sessionId: this.id,
     });
 

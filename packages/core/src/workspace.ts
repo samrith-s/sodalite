@@ -1,8 +1,7 @@
 import type { ULID } from "@samrith/sodalite-utils";
-
-import { Metadata } from "./metadata";
-import type { MetadataOptions } from "./metadata";
-import { Session } from "./session";
+import type { MetadataOptions } from "./metadata.ts";
+import { Metadata } from "./metadata.ts";
+import { Session } from "./session.ts";
 
 export interface WorkspaceOptions extends MetadataOptions {
   cwd: string;
@@ -38,7 +37,7 @@ export class Workspace extends Metadata {
     super({ archived, createdAt, id, updatedAt });
     this.#cwd = cwd;
 
-    if (sessions && sessions.length) {
+    if (sessions?.length) {
       this.#sessions = new Map(
         sessions.map((session) => [session.id, session])
       );

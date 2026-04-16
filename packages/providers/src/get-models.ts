@@ -1,8 +1,8 @@
 import { NotFoundError } from "@samrith/sodalite-utils";
 
-import type { ModelProviders } from "./config";
-import { Model } from "./models";
-import type { Provider } from "./provider";
+import type { ModelProviders } from "./config.ts";
+import { Model } from "./models.ts";
+import type { Provider } from "./provider.ts";
 
 export const getModels = (
   providers: Map<string, Provider<ModelProviders>>

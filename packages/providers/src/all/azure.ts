@@ -1,8 +1,8 @@
-import { createAzure } from "@ai-sdk/azure";
 import type { AzureOpenAIProviderSettings } from "@ai-sdk/azure";
+import { createAzure } from "@ai-sdk/azure";
 import { z } from "zod";
 
-import type { ExtractedModels, SensibleProviderOptions } from "../types";
+import type { ExtractedModels, SensibleProviderOptions } from "../types.ts";
 
 export const AzureProviderOptionsSchema: z.ZodType<
   SensibleProviderOptions<AzureOpenAIProviderSettings, AzureModels>

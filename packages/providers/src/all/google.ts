@@ -1,8 +1,8 @@
-import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import type { GoogleGenerativeAIProviderSettings } from "@ai-sdk/google";
+import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { z } from "zod";
 
-import type { ExtractedModels, SensibleProviderOptions } from "../types";
+import type { ExtractedModels, SensibleProviderOptions } from "../types.ts";
 
 export const GoogleProviderOptionsSchema: z.ZodType<
   SensibleProviderOptions<GoogleGenerativeAIProviderSettings, GoogleModels>

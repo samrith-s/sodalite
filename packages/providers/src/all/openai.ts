@@ -1,8 +1,8 @@
-import { createOpenAI } from "@ai-sdk/openai";
 import type { OpenAIProviderSettings } from "@ai-sdk/openai";
+import { createOpenAI } from "@ai-sdk/openai";
 import { z } from "zod";
 
-import type { ExtractedModels, SensibleProviderOptions } from "../types";
+import type { ExtractedModels, SensibleProviderOptions } from "../types.ts";
 
 export const OpenAIProviderOptionsSchema: z.ZodType<
   SensibleProviderOptions<OpenAIProviderSettings, OpenAIModels>

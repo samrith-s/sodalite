@@ -10,7 +10,7 @@
     "typecheck": "bunx tsc --noEmit",
     "lint": "ultracite check",
     "lint:check": "ultracite check",
-    "lint:fix": "ultracite fix"
+    "lint:fix": "ultracite fix --unsafe"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.10",

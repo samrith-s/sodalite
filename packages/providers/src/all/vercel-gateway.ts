@@ -1,8 +1,8 @@
-import { createGateway } from "@ai-sdk/gateway";
 import type { GatewayProviderSettings } from "@ai-sdk/gateway";
+import { createGateway } from "@ai-sdk/gateway";
 import { z } from "zod";
 
-import type { ExtractedModels, SensibleProviderOptions } from "../types";
+import type { ExtractedModels, SensibleProviderOptions } from "../types.ts";
 
 export const VercelGatewayProviderOptionsSchema: z.ZodType<
   SensibleProviderOptions<GatewayProviderSettings, VercelGatewayModels>

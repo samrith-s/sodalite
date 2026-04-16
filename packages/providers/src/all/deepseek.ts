@@ -1,8 +1,8 @@
-import { createDeepSeek } from "@ai-sdk/deepseek";
 import type { DeepSeekProviderSettings } from "@ai-sdk/deepseek";
+import { createDeepSeek } from "@ai-sdk/deepseek";
 import { z } from "zod";
 
-import type { ExtractedModels, SensibleProviderOptions } from "../types";
+import type { ExtractedModels, SensibleProviderOptions } from "../types.ts";
 
 export const DeepSeekProviderOptionsSchema: z.ZodType<
   SensibleProviderOptions<DeepSeekProviderSettings, DeepSeekModels>

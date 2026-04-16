@@ -1,41 +1,40 @@
 // oxlint-disable typescript/no-unsafe-type-assertion
 import { createAnthropic } from "@ai-sdk/anthropic";
-
-import { createAmazonBedrock } from "./all/amazon-bedrock";
-import type { AmazonBedrockProviderOptions } from "./all/amazon-bedrock";
-import type { AnthropicProviderOptions } from "./all/anthropic";
-import { createAzure } from "./all/azure";
-import type { AzureProviderOptions } from "./all/azure";
-import { createCohere } from "./all/cohere";
-import type { CohereProviderOptions } from "./all/cohere";
-import { createDeepSeek } from "./all/deepseek";
-import type { DeepSeekProviderOptions } from "./all/deepseek";
-import { createGoogleGenerativeAI } from "./all/google";
-import type { GoogleProviderOptions } from "./all/google";
-import { createGroq } from "./all/groq";
-import type { GroqProviderOptions } from "./all/groq";
-import { createMistral } from "./all/mistral";
-import type { MistralProviderOptions } from "./all/mistral";
-import { createOpenAI } from "./all/openai";
-import type { OpenAIProviderOptions } from "./all/openai";
-import { createOpenAICompatible } from "./all/openai-compatible";
-import type { OpenAICompatibleProviderOptions } from "./all/openai-compatible";
-import { createTogetherAI } from "./all/togetherai";
-import type { TogetherAIProviderOptions } from "./all/togetherai";
-import { createVercelGateway } from "./all/vercel-gateway";
-import type { VercelGatewayProviderOptions } from "./all/vercel-gateway";
-import { createVertex } from "./all/vertex";
-import type { VertexProviderOptions } from "./all/vertex";
-import { createXai } from "./all/xai";
-import type { XaiProviderOptions } from "./all/xai";
-import { ModelProviders } from "./config";
+import type { AmazonBedrockProviderOptions } from "./all/amazon-bedrock.ts";
+import { createAmazonBedrock } from "./all/amazon-bedrock.ts";
+import type { AnthropicProviderOptions } from "./all/anthropic.ts";
+import type { AzureProviderOptions } from "./all/azure.ts";
+import { createAzure } from "./all/azure.ts";
+import type { CohereProviderOptions } from "./all/cohere.ts";
+import { createCohere } from "./all/cohere.ts";
+import type { DeepSeekProviderOptions } from "./all/deepseek.ts";
+import { createDeepSeek } from "./all/deepseek.ts";
+import type { GoogleProviderOptions } from "./all/google.ts";
+import { createGoogleGenerativeAI } from "./all/google.ts";
+import type { GroqProviderOptions } from "./all/groq.ts";
+import { createGroq } from "./all/groq.ts";
+import type { MistralProviderOptions } from "./all/mistral.ts";
+import { createMistral } from "./all/mistral.ts";
+import type { OpenAIProviderOptions } from "./all/openai.ts";
+import { createOpenAI } from "./all/openai.ts";
+import type { OpenAICompatibleProviderOptions } from "./all/openai-compatible.ts";
+import { createOpenAICompatible } from "./all/openai-compatible.ts";
+import type { TogetherAIProviderOptions } from "./all/togetherai.ts";
+import { createTogetherAI } from "./all/togetherai.ts";
+import type { VercelGatewayProviderOptions } from "./all/vercel-gateway.ts";
+import { createVercelGateway } from "./all/vercel-gateway.ts";
+import type { VertexProviderOptions } from "./all/vertex.ts";
+import { createVertex } from "./all/vertex.ts";
+import type { XaiProviderOptions } from "./all/xai.ts";
+import { createXai } from "./all/xai.ts";
 import type {
   ProviderClient,
   ProviderDescriptor,
   ProviderModel,
   ProviderOptions,
-} from "./config";
-import { ProviderError } from "./errors";
+} from "./config.ts";
+import { ModelProviders } from "./config.ts";
+import { ProviderError } from "./errors.ts";
 
 export class Provider<P extends ModelProviders> {
   readonly #provider: P;

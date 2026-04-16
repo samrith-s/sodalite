@@ -1,8 +1,8 @@
-import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
 import type { OpenAICompatibleProviderSettings } from "@ai-sdk/openai-compatible";
+import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
 import { z } from "zod";
 
-import type { ExtractedModels, SensibleProviderOptions } from "../types";
+import type { ExtractedModels, SensibleProviderOptions } from "../types.ts";
 
 export const OpenAICompatibleProviderOptionsSchema: z.ZodType<
   SensibleProviderOptions<

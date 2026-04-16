@@ -1,14 +1,13 @@
 import {
-  monotonicFactory,
-  isValid,
-  ulidToUUID,
-  uuidToULID,
   decodeTime,
   encodeTime,
+  isValid,
+  monotonicFactory,
+  ulidToUUID,
+  uuidToULID,
 } from "ulid";
-import type { ULID } from "ulid";
 
-export type { ULID };
+export type { ULID } from "ulid";
 
 export const Ulid = {
   decodeTime,

@@ -1,8 +1,8 @@
-import { createMistral } from "@ai-sdk/mistral";
 import type { MistralProviderSettings } from "@ai-sdk/mistral";
+import { createMistral } from "@ai-sdk/mistral";
 import { z } from "zod";
 
-import type { ExtractedModels, SensibleProviderOptions } from "../types";
+import type { ExtractedModels, SensibleProviderOptions } from "../types.ts";
 
 export const MistralProviderOptionsSchema: z.ZodType<
   SensibleProviderOptions<MistralProviderSettings, MistralModels>

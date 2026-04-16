@@ -1,16 +1,16 @@
-import { tool } from "ai";
 import type { Tool as AITool, FlexibleSchema } from "ai";
+import { tool } from "ai";
 import type { z } from "zod";
 
 export interface ToolDescriptor<
   Params extends FlexibleSchema<z.ZodType> = FlexibleSchema<z.ZodType>,
   Result extends FlexibleSchema<z.ZodType> = FlexibleSchema<z.ZodType>,
 > {
-  name: string;
   description: string;
-  parameters: Params;
-  needsApproval?: boolean;
   execute(parameters: z.infer<Params>): Promise<Result>;
+  name: string;
+  needsApproval?: boolean;
+  parameters: Params;
 }
 
 export class Tool<

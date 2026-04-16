@@ -1,8 +1,8 @@
-import { createCohere } from "@ai-sdk/cohere";
 import type { CohereProviderSettings } from "@ai-sdk/cohere";
+import { createCohere } from "@ai-sdk/cohere";
 import { z } from "zod";
 
-import type { ExtractedModels, SensibleProviderOptions } from "../types";
+import type { ExtractedModels, SensibleProviderOptions } from "../types.ts";
 
 export const CohereProviderOptionsSchema: z.ZodType<
   SensibleProviderOptions<CohereProviderSettings, CohereModels>

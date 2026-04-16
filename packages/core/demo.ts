@@ -3,8 +3,8 @@ import { createInterface } from "node:readline/promises";
 
 import { Model, ModelProviders, Provider } from "@samrith/sodalite-providers";
 
-import { Bus } from "./src/events";
-import { Workspace } from "./src/workspace";
+import { Bus } from "./src/events/bus.ts";
+import { Workspace } from "./src/workspace.ts";
 
 const modelId = "gemma4";
 
@@ -30,10 +30,10 @@ try {
     process.stdout.write("\nAssistant: ");
   });
   Bus.on("message.stream", ({ message }) => {
-    process.stdout.write(message.content.content);
+    process.stdout.write(message.content.content as string);
   });
   Bus.on("message.end", ({ usage }) => {
-    process.stdout.write(`\nusage:`);
+    process.stdout.write("\nusage:");
     process.stdout.write(
       `\n  input: ${usage.input.total} tokens, ${usage.input.cachedRead} cached read, ${usage.input.cachedWrite} cached write, ${usage.input.noCache} no cache`
     );
@@ -46,12 +46,11 @@ try {
     process.stdout.write("\n\n");
   });
 
-  await loop(
-    async (text) =>{ 
-      await session.message(text, {
-        model,
-      }); }
-  );
+  await loop(async (text) => {
+    await session.message(text, {
+      model,
+    });
+  });
 } finally {
   rl.close();
 }

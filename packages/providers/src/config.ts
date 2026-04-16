@@ -1,41 +1,43 @@
 import { z } from "zod";
-
-import { AmazonBedrockProviderOptionsSchema } from "./all/amazon-bedrock";
 import type {
   AmazonBedrockModels,
   AmazonBedrockProviderClient,
-} from "./all/amazon-bedrock";
-import { AnthropicProviderOptionsSchema } from "./all/anthropic";
-import type { AnthropicModels, AnthropicProviderClient } from "./all/anthropic";
-import { AzureProviderOptionsSchema } from "./all/azure";
-import type { AzureModels, AzureProviderClient } from "./all/azure";
-import { CohereProviderOptionsSchema } from "./all/cohere";
-import type { CohereModels, CohereProviderClient } from "./all/cohere";
-import { DeepSeekProviderOptionsSchema } from "./all/deepseek";
-import type { DeepSeekModels, DeepSeekProviderClient } from "./all/deepseek";
-import { GoogleProviderOptionsSchema } from "./all/google";
-import type { GoogleModels, GoogleProviderClient } from "./all/google";
-import { GroqProviderOptionsSchema } from "./all/groq";
-import type { GroqModels, GroqProviderClient } from "./all/groq";
-import { MistralProviderOptionsSchema } from "./all/mistral";
-import type { MistralModels, MistralProviderClient } from "./all/mistral";
-import { OpenAIProviderOptionsSchema } from "./all/openai";
-import type { OpenAIModels, OpenAIProviderClient } from "./all/openai";
-import type { OpenAICompatibleProviderClient } from "./all/openai-compatible";
-import { TogetherAIProviderOptionsSchema } from "./all/togetherai";
+} from "./all/amazon-bedrock.ts";
+import { AmazonBedrockProviderOptionsSchema } from "./all/amazon-bedrock.ts";
+import type {
+  AnthropicModels,
+  AnthropicProviderClient,
+} from "./all/anthropic.ts";
+import { AnthropicProviderOptionsSchema } from "./all/anthropic.ts";
+import type { AzureModels, AzureProviderClient } from "./all/azure.ts";
+import { AzureProviderOptionsSchema } from "./all/azure.ts";
+import type { CohereModels, CohereProviderClient } from "./all/cohere.ts";
+import { CohereProviderOptionsSchema } from "./all/cohere.ts";
+import type { DeepSeekModels, DeepSeekProviderClient } from "./all/deepseek.ts";
+import { DeepSeekProviderOptionsSchema } from "./all/deepseek.ts";
+import type { GoogleModels, GoogleProviderClient } from "./all/google.ts";
+import { GoogleProviderOptionsSchema } from "./all/google.ts";
+import type { GroqModels, GroqProviderClient } from "./all/groq.ts";
+import { GroqProviderOptionsSchema } from "./all/groq.ts";
+import type { MistralModels, MistralProviderClient } from "./all/mistral.ts";
+import { MistralProviderOptionsSchema } from "./all/mistral.ts";
+import type { OpenAIModels, OpenAIProviderClient } from "./all/openai.ts";
+import { OpenAIProviderOptionsSchema } from "./all/openai.ts";
+import type { OpenAICompatibleProviderClient } from "./all/openai-compatible.ts";
 import type {
   TogetherAIModels,
   TogetherAIProviderClient,
-} from "./all/togetherai";
-import { VercelGatewayProviderOptionsSchema } from "./all/vercel-gateway";
+} from "./all/togetherai.ts";
+import { TogetherAIProviderOptionsSchema } from "./all/togetherai.ts";
 import type {
   VercelGatewayModels,
   VercelGatewayProviderClient,
-} from "./all/vercel-gateway";
-import { VertexProviderOptionsSchema } from "./all/vertex";
-import type { VertexModels, VertexProviderClient } from "./all/vertex";
-import { XaiProviderOptionsSchema } from "./all/xai";
-import type { XaiModels, XaiProviderClient } from "./all/xai";
+} from "./all/vercel-gateway.ts";
+import { VercelGatewayProviderOptionsSchema } from "./all/vercel-gateway.ts";
+import type { VertexModels, VertexProviderClient } from "./all/vertex.ts";
+import { VertexProviderOptionsSchema } from "./all/vertex.ts";
+import type { XaiModels, XaiProviderClient } from "./all/xai.ts";
+import { XaiProviderOptionsSchema } from "./all/xai.ts";
 
 /** String-literal union (not a TS enum) so config objects accept `"openai"` and Zod inference matches. */
 export const ModelProviders = {

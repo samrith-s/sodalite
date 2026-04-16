@@ -1,8 +1,8 @@
-import { createGroq } from "@ai-sdk/groq";
 import type { GroqProviderSettings } from "@ai-sdk/groq";
+import { createGroq } from "@ai-sdk/groq";
 import { z } from "zod";
 
-import type { ExtractedModels, SensibleProviderOptions } from "../types";
+import type { ExtractedModels, SensibleProviderOptions } from "../types.ts";
 
 export const GroqProviderOptionsSchema: z.ZodType<
   SensibleProviderOptions<GroqProviderSettings, GroqModels>

@@ -2,10 +2,10 @@ import { existsSync } from "node:fs";
 
 import { NotFoundError } from "@samrith/sodalite-utils";
 
-import type { ModelProviders, ProviderConfig } from "./config";
-import { ProviderConfigSchema } from "./config";
-import { ProviderConfigParseError } from "./errors";
-import { Provider } from "./provider";
+import type { ModelProviders, ProviderConfig } from "./config.ts";
+import { ProviderConfigSchema } from "./config.ts";
+import { ProviderConfigParseError } from "./errors.ts";
+import { Provider } from "./provider.ts";
 
 export const loadProviders = async ({
   globalPath,
@@ -14,7 +14,7 @@ export const loadProviders = async ({
   globalPath: string;
   localPath: string;
 }): Promise<Map<string, Provider<ModelProviders>>> => {
-  if (!existsSync(globalPath) && !existsSync(localPath)) {
+  if (!(existsSync(globalPath) || existsSync(localPath))) {
     throw new NotFoundError("global providers file not found", {
       cause: globalPath,
     });

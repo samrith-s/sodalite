@@ -1,8 +1,8 @@
-import { createTogetherAI } from "@ai-sdk/togetherai";
 import type { TogetherAIProviderSettings } from "@ai-sdk/togetherai";
+import { createTogetherAI } from "@ai-sdk/togetherai";
 import { z } from "zod";
 
-import type { ExtractedModels, SensibleProviderOptions } from "../types";
+import type { ExtractedModels, SensibleProviderOptions } from "../types.ts";
 
 export const TogetherAIProviderOptionsSchema: z.ZodType<
   SensibleProviderOptions<TogetherAIProviderSettings, TogetherAIModels>

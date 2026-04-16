@@ -1,15 +1,8 @@
 // oxlint-disable func-style
-import { Bus } from "./bus";
-import type { Events } from "./catalog";
+import { Bus } from "./bus.ts";
+import type { Events } from "./catalog.ts";
 
 export interface EmitOptions {
-  /**
-   * When to emit relative to the wrapped body.
-   * - `before` — emit before the body runs (`result` is `undefined` in `payload`).
-   * - `after` — emit after the body returns (or the promise settles).
-   * - `both` — emit before and after.
-   */
-  when?: "before" | "after" | "both";
   /**
    * Maps `(args, result)` to the argument list passed to `Bus.emit(event, ...args)`.
    * For `when: "before"` or the before pass of `both`, `result` is `undefined`.
@@ -20,6 +13,13 @@ export interface EmitOptions {
    * - **Field**: `args` is `[]`; `result` is the field value after the initializer runs.
    */
   payload?: (args: unknown[], result: unknown) => unknown[];
+  /**
+   * When to emit relative to the wrapped body.
+   * - `before` — emit before the body runs (`result` is `undefined` in `payload`).
+   * - `after` — emit after the body returns (or the promise settles).
+   * - `both` — emit before and after.
+   */
+  when?: "before" | "after" | "both";
 }
 
 function isThenable(value: unknown): value is PromiseLike<unknown> {
@@ -93,6 +93,7 @@ export function Emit(event: Events, options?: EmitOptions): EmitDecorator {
     }
 
     const mapped = options?.payload?.(args, result) ?? args;
+    // biome-ignore lint/suspicious/noExplicitAny: too much type noise
     Bus.emit(event, mapped as any);
   }
 

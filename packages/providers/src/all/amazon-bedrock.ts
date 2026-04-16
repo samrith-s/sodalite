@@ -1,8 +1,8 @@
-import { createAmazonBedrock } from "@ai-sdk/amazon-bedrock";
 import type { AmazonBedrockProviderSettings } from "@ai-sdk/amazon-bedrock";
+import { createAmazonBedrock } from "@ai-sdk/amazon-bedrock";
 import { z } from "zod";
 
-import type { ExtractedModels, SensibleProviderOptions } from "../types";
+import type { ExtractedModels, SensibleProviderOptions } from "../types.ts";
 
 export const AmazonBedrockProviderOptionsSchema: z.ZodType<
   SensibleProviderOptions<AmazonBedrockProviderSettings, AmazonBedrockModels>

@@ -2,21 +2,16 @@ import type { Model } from "@samrith/sodalite-providers";
 import type { ULID } from "@samrith/sodalite-utils";
 import type { ModelMessage } from "ai";
 
-import type { MetadataOptions } from "./metadata";
-import { Metadata } from "./metadata";
+import type { MetadataOptions } from "./metadata.ts";
+import { Metadata } from "./metadata.ts";
 
-export enum MessageRole {
-  USER = "user",
-  ASSISTANT = "assistant",
-  SYSTEM = "system",
-  TOOL = "tool",
-}
+export type MessageRole = "user" | "assistant" | "system" | "tool";
 
 export interface MessageOptions extends MetadataOptions {
-  sessionId: ULID;
   content?: string;
-  role: MessageRole;
   model: Model;
+  role: MessageRole;
+  sessionId: ULID;
 }
 
 export class Message extends Metadata {

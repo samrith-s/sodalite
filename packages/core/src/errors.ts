@@ -1,7 +1,7 @@
 // oxlint-disable max-classes-per-file
 
-import type { Message } from "./message";
-import type { Session } from "./session";
+import type { Message } from "./message.ts";
+import type { Session } from "./session.ts";
 
 export class SessionError extends Error {
   constructor(

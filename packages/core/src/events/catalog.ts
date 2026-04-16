@@ -1,31 +1,19 @@
 import type { ToolCallRepairError, ToolResultPart } from "ai";
 
-import type { SessionError } from "../errors";
-import type { Message } from "../message";
-import type { Session, SessionUsage } from "../session";
-import type { Tool } from "../tools";
+import type { SessionError } from "../errors.ts";
+import type { Message } from "../message.ts";
+import type { Session, SessionUsage } from "../session.ts";
+import type { Tool } from "../tools.ts";
 
 export type Events = `${keyof EventsCatalog & string}`;
 
 export interface EventsCatalog {
-  // Session events
-  "session.start": (params: { session: Session }) => void;
-  "session.end": (params: { session: Session }) => void;
-  "session.resume": (params: { session: Session }) => void;
-  "session.message": (params: { session: Session; message: Message }) => void;
-  "session.archive": (params: { session: Session }) => void;
-  "session.error": (params: { session: Session; error: SessionError }) => void;
-  "session.fatal": (params: { session: Session; error: SessionError }) => void;
-
-  // Message events
-  "message.start": (params: { session: Session; message: Message }) => void;
-  "message.stream": (params: { session: Session; message: Message }) => void;
-  "message.end": (params: {
+  "message.abort": (params: {
     session: Session;
     message: Message;
     usage: SessionUsage;
   }) => void;
-  "message.abort": (params: {
+  "message.end": (params: {
     session: Session;
     message: Message;
     usage: SessionUsage;
@@ -43,19 +31,20 @@ export interface EventsCatalog {
     usage: SessionUsage;
   }) => void;
 
-  // Tool events
-  "tool.discover": (params: { session: Session; tool: Tool }) => void;
-  "tool.register": (params: { session: Session; tool: Tool }) => void;
-  "tool.call.start": (params: { session: Session; tool: Tool }) => void;
+  // Message events
+  "message.start": (params: { session: Session; message: Message }) => void;
+  "message.stream": (params: { session: Session; message: Message }) => void;
+  "session.archive": (params: { session: Session }) => void;
+  "session.end": (params: { session: Session }) => void;
+  "session.error": (params: { session: Session; error: SessionError }) => void;
+  "session.fatal": (params: { session: Session; error: SessionError }) => void;
+  "session.message": (params: { session: Session; message: Message }) => void;
+  "session.resume": (params: { session: Session }) => void;
+  // Session events
+  "session.start": (params: { session: Session }) => void;
   "tool.call.end": (params: {
     session: Session;
     tool: Tool;
-    usage: SessionUsage;
-  }) => void;
-  "tool.call.result": (params: {
-    session: Session;
-    tool: Tool;
-    result: ToolResultPart;
     usage: SessionUsage;
   }) => void;
   "tool.call.error": (params: {
@@ -68,4 +57,15 @@ export interface EventsCatalog {
     error: ToolCallRepairError;
     usage: SessionUsage;
   }) => void;
+  "tool.call.result": (params: {
+    session: Session;
+    tool: Tool;
+    result: ToolResultPart;
+    usage: SessionUsage;
+  }) => void;
+  "tool.call.start": (params: { session: Session; tool: Tool }) => void;
+
+  // Tool events
+  "tool.discover": (params: { session: Session; tool: Tool }) => void;
+  "tool.register": (params: { session: Session; tool: Tool }) => void;
 }

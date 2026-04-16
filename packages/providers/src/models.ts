@@ -1,7 +1,7 @@
 import type { LanguageModelV3 } from "@ai-sdk/provider";
 
-import type { ModelProviders } from "./config";
-import type { Provider } from "./provider";
+import type { ModelProviders } from "./config.ts";
+import type { Provider } from "./provider.ts";
 
 export class Model<P extends ModelProviders = ModelProviders> {
   readonly #provider: Provider<P>;

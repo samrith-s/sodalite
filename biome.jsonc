@@ -11,6 +11,16 @@
           }
         }
       }
+    },
+    {
+      "includes": ["packages/providers/src/all/*.ts"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noExportedImports": "off"
+          }
+        }
+      }
     }
   ]
 }
