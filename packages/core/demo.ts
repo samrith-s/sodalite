@@ -11,6 +11,8 @@ const modelId = "gemma4";
 const provider = new Provider({
   models: [modelId],
   options: {
+    name: "ollama",
+    apiKey: "ollama",
     baseURL: "http://localhost:11434/v1",
   },
   provider: ModelProviders.OPENAI_COMPATIBLE,
