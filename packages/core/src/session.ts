@@ -1,7 +1,6 @@
 import type { ULID } from "@samrith/sodalite-utils";
 
 import { Bus } from "./events/bus.ts";
-import { Emit } from "./events/emit.ts";
 import type { MessageOptions } from "./message.ts";
 import { Message } from "./message.ts";
 import type { MetadataOptions } from "./metadata.ts";
@@ -72,6 +71,8 @@ export class Session extends Metadata {
         }
       }
     }
+
+    Bus.emit("session.create", { session: this });
   }
 
   get workspaceId(): ULID {
@@ -99,13 +100,12 @@ export class Session extends Metadata {
     };
   }
 
-  @Emit("session.archive")
   override archive(): this {
+    Bus.emit("session.archive", { session: this });
     super.archive();
     return this;
   }
 
-  @Emit("session.message")
   async message(
     content: string,
     descriptor: Pick<MessageOptions, "model">
@@ -113,7 +113,7 @@ export class Session extends Metadata {
     const message = Message.from(content, {
       model: descriptor.model,
       role: "user",
-      sessionId: this.id,
+      session: this,
     });
 
     this.#messages.push(message);
@@ -123,7 +123,7 @@ export class Session extends Metadata {
     const agentMessage = Message.from("", {
       model: descriptor.model,
       role: "assistant",
-      sessionId: this.id,
+      session: this,
     });
 
     this.#messages.push(agentMessage);
@@ -178,21 +178,10 @@ export class Session extends Metadata {
           usage: this.#tokens,
         });
       },
-      // onStepFinish: ({ text, reasoningText, response }) => {
-      //   response.messages.forEach((msg) => {
-      //     if (msg.role === "assistant") {
-      //       // oxlint-disable-next-line typescript/no-base-to-string
-      //       agentMessage.append(msg.content.toString());
-      //     }
-      //   });
-
-      //   Bus.emit("message.stream", { session: this, message: agentMessage });
-      // },
     });
 
     for await (const chunk of stream.textStream) {
       agentMessage.update(chunk);
-      Bus.emit("message.stream", { message: agentMessage, session: this });
     }
   }
 }

@@ -1,9 +1,9 @@
 import type { Model } from "@samrith/sodalite-providers";
-import type { ULID } from "@samrith/sodalite-utils";
 import type { ModelMessage } from "ai";
-
+import { Bus } from "./events/bus.ts";
 import type { MetadataOptions } from "./metadata.ts";
 import { Metadata } from "./metadata.ts";
+import type { Session } from "./session.ts";
 
 export type MessageRole = "user" | "assistant" | "system" | "tool";
 
@@ -11,12 +11,12 @@ export interface MessageOptions extends MetadataOptions {
   content?: string;
   model: Model;
   role: MessageRole;
-  sessionId: ULID;
+  session: Session;
 }
 
 export class Message extends Metadata {
   readonly #role: MessageRole;
-  readonly #sessionId: ULID;
+  readonly #session: Session;
   readonly #model: Model;
 
   #content: string;
@@ -27,26 +27,20 @@ export class Message extends Metadata {
 
   constructor(
     content: string,
-    {
-      id,
-      createdAt,
-      updatedAt,
-      archived,
-      sessionId,
-      role,
-      model,
-    }: MessageOptions
+    { id, createdAt, updatedAt, archived, session, role, model }: MessageOptions
   ) {
     super({ archived, createdAt, id, updatedAt });
 
-    this.#sessionId = sessionId;
+    this.#session = session;
     this.#content = content;
     this.#role = role;
     this.#model = model;
+
+    Bus.emit("message.create", { message: this });
   }
 
-  get sessionId(): ULID {
-    return this.#sessionId;
+  get session(): Session {
+    return this.#session;
   }
 
   get content(): ModelMessage {
@@ -68,6 +62,8 @@ export class Message extends Metadata {
   append(content: string): string {
     this.#content += content;
     this._updatedAt = new Date();
+
+    Bus.emit("message.update", { session: this.#session, message: this });
 
     return this.#content;
   }

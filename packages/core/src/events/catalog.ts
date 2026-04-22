@@ -8,11 +8,13 @@ import type { Tool } from "../tools.ts";
 export type Events = `${keyof EventsCatalog & string}`;
 
 export interface EventsCatalog {
+  // Message events
   "message.abort": (params: {
     session: Session;
     message: Message;
     usage: SessionUsage;
   }) => void;
+  "message.create": (params: { message: Message }) => void;
   "message.end": (params: {
     session: Session;
     message: Message;
@@ -30,18 +32,20 @@ export interface EventsCatalog {
     error: unknown;
     usage: SessionUsage;
   }) => void;
-
-  // Message events
   "message.start": (params: { session: Session; message: Message }) => void;
-  "message.stream": (params: { session: Session; message: Message }) => void;
+  "message.update": (params: { session: Session; message: Message }) => void;
+
+  // Session events
   "session.archive": (params: { session: Session }) => void;
+  "session.create": (params: { session: Session }) => void;
   "session.end": (params: { session: Session }) => void;
   "session.error": (params: { session: Session; error: SessionError }) => void;
   "session.fatal": (params: { session: Session; error: SessionError }) => void;
   "session.message": (params: { session: Session; message: Message }) => void;
   "session.resume": (params: { session: Session }) => void;
-  // Session events
   "session.start": (params: { session: Session }) => void;
+
+  // Tool events
   "tool.call.end": (params: {
     session: Session;
     tool: Tool;
@@ -64,8 +68,6 @@ export interface EventsCatalog {
     usage: SessionUsage;
   }) => void;
   "tool.call.start": (params: { session: Session; tool: Tool }) => void;
-
-  // Tool events
   "tool.discover": (params: { session: Session; tool: Tool }) => void;
   "tool.register": (params: { session: Session; tool: Tool }) => void;
 }
