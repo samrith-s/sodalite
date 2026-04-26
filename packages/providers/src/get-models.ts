@@ -1,7 +1,7 @@
 import { NotFoundError } from "@samrith/sodalite-utils";
 
 import type { ModelProviders } from "./config.ts";
-import { Model } from "./models.ts";
+import { Model } from "./model.ts";
 import type { Provider } from "./provider.ts";
 
 export const getModels = (

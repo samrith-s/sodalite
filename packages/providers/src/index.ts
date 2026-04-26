@@ -77,5 +77,5 @@ export {
 } from "./errors.ts";
 export { getModels } from "./get-models.ts";
 export { loadProviders } from "./load-providers.ts";
-export { Model } from "./models.ts";
+export { Model } from "./model.ts";
 export { Provider } from "./provider.ts";
