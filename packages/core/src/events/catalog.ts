@@ -3,7 +3,7 @@ import type { ToolCallRepairError, ToolResultPart } from "ai";
 import type { SessionError } from "../errors.ts";
 import type { Message } from "../message.ts";
 import type { Session, SessionUsage } from "../session.ts";
-import type { Tool } from "../tools.ts";
+import type { Tool } from "../tool.ts";
 
 export type Events = `${keyof EventsCatalog & string}`;
 
@@ -53,11 +53,13 @@ export interface EventsCatalog {
   }) => void;
   "tool.call.error": (params: {
     session: Session;
+    tool: Tool;
     error: ToolCallRepairError;
     usage: SessionUsage;
   }) => void;
   "tool.call.fatal": (params: {
     session: Session;
+    tool: Tool;
     error: ToolCallRepairError;
     usage: SessionUsage;
   }) => void;

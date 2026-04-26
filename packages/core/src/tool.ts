@@ -56,10 +56,4 @@ export class Tool<
   get registry(): AITool<Params, Result> {
     return this.#tool;
   }
-
-  // async execute(parameters: z.infer<Params>):  {
-  //   const t = tool({
-
-  //   })
-  // }
 }
